@@ -6,6 +6,33 @@ $(function (){
     var menu_items = $('#menu-main-menu li');
     current_page = localStorage.getItem('current_page') == null ? 0 : localStorage.getItem('current_page'); 
     
+    //#region SECTION: Signin / Signup Events
+    $('.form-signup').on('submit',function (e){
+        var name = $('#name-reg').val()
+        var email = $('#email-reg').val()
+        var password = $('#pass-reg').val()
+        var password_confirm = $('#pass-reg-confirm').val()
+        
+        if(password != password_confirm){
+            modal_message("Passwords are note matched");
+            return false;
+        }
+        // e.preventDefault();
+        getLocation();
+        register(name, email, password, password_confirm, _location);
+        return false;
+    })
+    
+    $('.form-signin').on('submit',function (e){
+        var email = $('#email-log').val()
+        var password = $('#pass-log').val()       
+        e.preventDefault(); 
+        login(email, password);
+        return false;
+    });
+    
+    //#endregion
+    
     // #region SECTION: Menu Event
     $('#menu-main-menu').delegate('li', 'click', function (){
         $(this).addClass('active').siblings().removeClass('active');
