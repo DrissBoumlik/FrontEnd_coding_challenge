@@ -1,12 +1,12 @@
 $(function (){
     var logged, registred, user_name, _location;
     var current_page;
+    // Verifying if the use is logged  
     
     var menu_items = $('#menu-main-menu li');
     current_page = localStorage.getItem('current_page') == null ? 0 : localStorage.getItem('current_page'); 
     
     getLocation(); 
-    // Verifying if the user is logged  
     if(logged = is_logged()){
         $('#register-form').addClass('hidden');
         $('#login-form').addClass('hidden');
@@ -55,6 +55,102 @@ $(function (){
     })
     
     // #endregion
+    
+    // #region SECTION: Authentication functions
+    
+    function is_logged(){
+        var token = localStorage.getItem('token');
+        if(token == null){
+            $('#register-form').removeClass('hidden');
+            $('#login-form').removeClass('hidden');
+            $('#logout').addClass('hidden');            
+            return false;
+        }
+        return true;
+    }
+    
+    function register(name, email, password, password_confirm, user_location) {
+        $.ajax({
+            method: 'POST', // Type of response and matches what we said in the route
+            url: 'http://127.0.0.1:8000/api/register', // This is the url we gave in the route
+            data: {'name': name, 'email': email, 'password': password, 'password_confirm': password_confirm, 'user_location': user_location},
+            success: function(response){ // What to do if we succeed
+                registred = true;
+                $('#register-form').addClass('hidden');
+                $('#login-form').removeClass('hidden');
+                login(email, password);
+                return registred;
+            },
+            error: function(jqXHR, textStatus, errorThrown) { // What to do if we fail
+                // console.log(JSON.stringify(jqXHR));
+                var error = JSON.parse(jqXHR.responseText).error;
+                if(error.email != null)
+                    modal_message(error.email[0]);
+                $('#register-form').removeClass('hidden');
+                $('#login-form').removeClass('hidden');
+                console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
+                return register;
+            }
+        }, 100);
+    }
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.watchPosition(function(position) {
+                _location = position.coords.longitude + '|' + position.coords.latitude;
+            });
+        } else {
+            modal_message("Geolocation is not supported by this browser.");
+        }
+    }
+    function login(email, password) {
+        $.ajax({
+            method: 'POST', // Type of response and matches what we said in the route
+            url: 'http://127.0.0.1:8000/api/login', // This is the url we gave in the route
+            data: {'email': email, 'password': password},
+            success: function(response){ // What to do if we succeed
+                user_name = response.success.user.name;
+                $('#user-name').text('Hello ' + user_name);
+                localStorage.setItem('user_name', user_name);
+                localStorage.setItem('token', response.success.token);
+                logged = true;
+                $('#register-form').addClass('hidden');
+                $('#login-form').addClass('hidden');
+                $('#logout').removeClass('hidden');
+                preferred_shops();
+            },
+            error: function(jqXHR, textStatus, errorThrown) { // What to do if we fail
+                // console.log(JSON.stringify(jqXHR));
+                logged = false;
+                modal_message('Email and/or Password Incorrect')
+                $('#login-form').removeClass('hidden');
+                console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
+            }
+        });
+    }
+    
+    function logout(){
+        $.ajax({
+            method: 'GET', // Type of response and matches what we said in the route
+            url: 'http://127.0.0.1:8000/api/logout', // This is the url we gave in the route
+            headers: {"Authorization": 'Bearer ' + localStorage.getItem('token'), Accept: "application/json"},
+            success: function(response){ // What to do if we succeed
+                $('#register-form').removeClass('hidden');
+                $('#login-form').removeClass('hidden');
+                $('#user-name').addClass('hidden')
+                $('#logout').addClass('hidden')
+                localStorage.removeItem('user_name')
+                localStorage.removeItem('token')
+                logged = false;
+                location.reload();
+            },
+            error: function(jqXHR, textStatus, errorThrown) { // What to do if we fail
+                // console.log(JSON.stringify(jqXHR));
+                logged = true;
+                console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
+            }
+        });
+    }
+    //#endregion
     
     // #region SECTION: Shops functionnalities
     function remove_shop(shop_id){
