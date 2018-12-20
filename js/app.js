@@ -1,10 +1,19 @@
 $(function (){
     var logged, registred, user_name, _location;
     var current_page;
-    // Verifying if the use is logged  
     
     var menu_items = $('#menu-main-menu li');
     current_page = localStorage.getItem('current_page') == null ? 0 : localStorage.getItem('current_page'); 
+    
+    getLocation(); 
+    // Verifying if the user is logged  
+    if(logged = is_logged()){
+        $('#register-form').addClass('hidden');
+        $('#login-form').addClass('hidden');
+        $('#logout').removeClass('hidden');
+        $('#user-name').text('Hello ' + localStorage.getItem('user_name'));
+        current_page == 0 ? preferred_shops() : nearby_shops();
+    }
     
     //#region SECTION: Signin / Signup Events
     $('.form-signup').on('submit',function (e){
