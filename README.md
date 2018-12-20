@@ -5,7 +5,7 @@ This is a coding challenge for United Remote.
 
 You can find the BackEnd Section  [Here](https://github.com/drissboumlik/BackEnd_coding_challenge).
 
-# Prerequise
+# Prerequisites
 
 * Nodejs
 
