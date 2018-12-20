@@ -6,6 +6,20 @@ $(function (){
     var menu_items = $('#menu-main-menu li');
     current_page = localStorage.getItem('current_page') == null ? 0 : localStorage.getItem('current_page'); 
     
+    // #region SECTION: Menu Event
+    $('#menu-main-menu').delegate('li', 'click', function (){
+        $(this).addClass('active').siblings().removeClass('active');
+        var section_id = $(this).attr('data-section');
+        if(logged)
+            (section_id == 'nearby-shops') ? nearby_shops() : preferred_shops();
+        else modal_message('You need to Register / Login first')
+    });
+    $('#logout').on('click', function () {
+        logout();
+    })
+    
+    // #endregion
+    
     // #region SECTION: Shops functionnalities
     function remove_shop(shop_id){
         $.ajax({
