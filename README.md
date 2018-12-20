@@ -3,7 +3,7 @@ FrontEnd Section for the coding challenge
 
 This is a coding challenge for United Remote.
 
-You can find the Front-Service [Here](https://github.com/drissboumlik/BackEnd_coding_challenge).
+You can find the BackEnd Section  [Here](https://github.com/drissboumlik/BackEnd_coding_challenge).
 
 # Prerequise
 
