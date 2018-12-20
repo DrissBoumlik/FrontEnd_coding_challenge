@@ -97,5 +97,27 @@
         </div>
     </div>
     <!-- #endregion -->
+
+    <!-- Shops Section -->
+    <script id="template" type="app/template">
+        <div class="col-sm-2 section">
+            <div class="wrapper" id="{{shop_id}}">
+                <div class="shop-container">
+                    <header>{{shop_name}}</header>
+                    <div class="img"><img src="{{shop_img}}" alt=""/></div>
+                    <div class="row btns">
+                        <div class="col-sm-12"><button class="btn-primary btn like">Like</button></div>
+                        <div class="col-sm-12"><button class="btn btn-warning dislike">Dislike</button></div>
+                        <div class="col-sm-12"><button class="btn btn-danger remove hidden">Remove</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+    <!-- Pages Section -->
+    <script id="pages" type="app/template">
+        <span class="page btn-light" id='page_{{page_number}}'>{{page_number}}</span>
+    </script>
+    
 </body>
 </html>
