@@ -34,5 +34,41 @@
             </div><!--/.navbar-collapse -->
         </div>
     </nav>
+    
+    <!-- Login Section -->
+    <div class="container hidden" id="login-form">
+        <div class="row col-md-4 col-sm-6 col-sm-offset-3 col-md-offset-4">
+            <div class="form-container">
+                <div class="row"><div class="title"><h2>Please sign in</h2></div></div>
+                <div class="row"><div class="title">
+                    <form class="form-signin" _lpchecked="1">
+                        <label for="inputEmail" class="sr-only">Email address</label>
+                        <input name="email" type="email" id="email-log" class="form-control" placeholder="Email address" required autofocus="">
+                        <label for="inputPassword" class="sr-only">Password</label>
+                        <input name="password" type="password" id="pass-log" class="form-control" placeholder="Password" required>
+                        <button id="btn-login" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                    </form>
+                </div></div>
+            </div>
+        </div>
+    </div>    
+    <!-- Register Section -->
+    <div class="container hidden" id="register-form">
+        <div class="row col-md-4 col-sm-6 col-sm-offset-3 col-md-offset-4">
+            <div class="form-container">
+                <div class="row"><div class="title"><h2>Please sign up</h2></div></div>
+                <div class="row"><div class="title">
+                    <form class="form-signup">
+                        <input name="name" type="text" id="name-reg" class="form-control" placeholder="Name" required autofocus="">
+                        <input name="email" type="email" id="email-reg" class="form-control" placeholder="Email address" required autofocus="">
+                        <input name="password" type="password" id="pass-reg" class="form-control" placeholder="Password" required>
+                        <input name="password_confirm" type="password" id="pass-reg-confirm" class="form-control" placeholder="Confirm password" required>
+                        <button id="btn-register" class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+                    </form>
+                </div></div>
+            </div>
+        </div>
+    </div>
+    
 </body>
 </html>
