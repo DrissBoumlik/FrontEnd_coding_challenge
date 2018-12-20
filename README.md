@@ -7,9 +7,7 @@ You can find the BackEnd Section  [Here](https://github.com/drissboumlik/BackEnd
 
 # Prerequise
 
-* You need PHP 7.1+
-* Mysql
-* Php Composer
+* Nodejs
 
 # Installation
 
