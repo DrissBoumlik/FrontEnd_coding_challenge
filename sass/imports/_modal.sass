@@ -1,0 +1,77 @@
+
+// Modal Styles
+
+.modal-bg
+    opacity: 0.4
+    background-color: #474747
+    position: fixed
+    top: 0
+    left: 0
+    bottom: 0
+    right: 0
+
+.modal
+    font-size: 3rem
+    display: block
+    .modal-body
+        top: 50%
+        transform: translateY(-50%)
+        ._modal-container
+            position: relative
+            ._modal-header
+                height: 15px;
+                background-color: #FFF;
+            ._modal-body
+                padding: 20px 0 0
+                text-align: center;
+                background-color: #F5F5F5;
+                border-radius: 0 0 10px 10px;
+                .row
+                    margin-bottom: 5px
+                i
+                    font-size: 5rem
+                .row:nth-child(2)
+                    padding: 0 15px 15px
+            ._modal-header, ._modal-body
+                margin-top: -1px
+            p
+                font-family: 'Caveat'
+            *
+                box-shadow: unset
+            ._modal-bar
+                height: 20px;
+                background-color: #1DA1F2;
+                border-radius: 5px 5px 0 0;
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-orient: horizontal;
+                -webkit-box-direction: normal;
+                -ms-flex-direction: row;
+                flex-direction: row;
+                -webkit-box-pack: end;
+                -ms-flex-pack: end;
+                justify-content: flex-end;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                padding-right: 10px;
+                height: 30px
+                span
+                    margin-left: 5px
+                    border-radius: 50%
+                    background-color: #fff
+                    height: 19px
+                    width: 19px
+                    position: relative
+                    &:last-child
+                        background-color: transparent
+                    i
+                        cursor: pointer
+                        color: white
+                        position: absolute
+                        top: 50%
+                        transform: translate(-50%, -50%)
+                        left: 50%
+                        font-size: 2rem
+                        display: inline-block
