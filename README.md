@@ -15,4 +15,4 @@ You can find the BackEnd Section  [Here](https://github.com/drissboumlik/BackEnd
 * Navigate to the project folder  'cd FrontEnd_coding_challenge'
 * run node serve and head to http://127.0.0.1:5000 (if this image appear -> click 'Allow')
 
-![alt text](https://i.imgur.com/nNuYLHv.png)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![alt text](https://i.imgur.com/nNuYLHv.png)
